@@ -1,12 +1,12 @@
 #include <iostream>
 #define CATCH_CONFIG_NO_POSIX_SIGNALS
-#define CATCH_CONFIG_MAIN   
+//#define CATCH_CONFIG_MAIN  
+#define CATCH_CONFIG_RUNNER
 #include "catch.hpp"
 using namespace std;
-int main()
-{
+int main(){
 	Catch :: Session().run();
-return 0;
+	return 0;
 }
 //--
 TEST_CASE("Test Template")  
