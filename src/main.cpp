@@ -17,6 +17,8 @@ TEST_CASE("Test Template")
 TEST_CASE("Priting Out Text")
 {
 	string text;
-	text = "#Sample title \n This is a paragraph \n\n This is ** another ** ... \n"
-	REQUIRE(Text == 
+	text = "#Sample title \n This is a paragraph \n\n This is ** another ** ... \n";
+	FileConverter F1();
+
+	REQUIRE(FileConverter() == text);
 }

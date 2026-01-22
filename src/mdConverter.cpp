@@ -4,15 +4,19 @@
   using namespace std;
 
   void MDConverter :: FileConverter()
-    
     {
     ifstream inputFile("markdown-sample.md");
+    ofstream outputFile("output.txt");
 
-    if (!inputFile.is_open()) 
-    {
+    string line;
+    inputFile>>line;
+    if (!inputFile.is_open()){
+    
         cerr << "Error opening file." << endl;
         return;
     }
 
-    ofstream outputFile("output.txt");
+    
+    inputFile.close();
+    outputFile.close();
     }
