@@ -1,7 +1,7 @@
   #include "mdConverter.h"
   #include <fstream>
   #include <iostream>
-  using namespace.std;
+  using namespace std;
 
   void MDConverter :: FileConverter()
     
@@ -11,7 +11,7 @@
     if (!inputFile.is_open()) 
     {
         cerr << "Error opening file." << endl;
-        return 1;
+        return;
     }
 
     ofstream outputFile("output.txt");
