@@ -13,3 +13,9 @@ TEST_CASE("Test Template")
 { 
 	REQUIRE(100 == 100); 
 }
+TEST_CASE("Priting Out Text")
+{
+	string text;
+	text = "#Sample title \n This is a paragraph \n\n This is ** another ** ... \n"
+	REQUIRE(Text == )
+}
