@@ -3,6 +3,7 @@
 //#define CATCH_CONFIG_MAIN  
 #define CATCH_CONFIG_RUNNER
 #include "catch.hpp"
+#include "mdConverter.h"
 using namespace std;
 int main(){
 	Catch :: Session().run();
@@ -17,5 +18,5 @@ TEST_CASE("Priting Out Text")
 {
 	string text;
 	text = "#Sample title \n This is a paragraph \n\n This is ** another ** ... \n"
-	REQUIRE(Text == )
+	REQUIRE(Text == 
 }
