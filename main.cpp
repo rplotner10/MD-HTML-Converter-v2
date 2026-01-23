@@ -1,13 +1,18 @@
 #include <iostream>
-#include "mdConverter.h"
+
 #define CATCH_CONFIG_NO_POSIX_SIGNALS
-//#define CATCH_CONFIG_MAIN  
-#define CATCH_CONFIG_RUNNER
+#define CATCH_CONFIG_MAIN  
+//#define CATCH_CONFIG_RUNNER
+
 #include "catch.hpp"
+#include "StringSetter.h"
+
+#include <string>
 
 using namespace std;
 
-int main(){
+int main()
+{
 	Catch :: Session().run();
 	return 0;
 }
