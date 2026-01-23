@@ -10,7 +10,7 @@ using namespace std;
 class MDConverter 
 {
     public:
-    
+
       string returnFileText(string filePath);
 
     private:
