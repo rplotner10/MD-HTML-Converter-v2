@@ -18,3 +18,17 @@ string MDConverter :: returnFileText(string path)
   }
   return finalResult;
 }
+
+void MDConverter :: writeOutToFile(string outPutText)
+{
+  ofstream fout;
+  string text = outPutText;
+  fout.open("fileWText.txt");
+  if(fout.is_open())
+  {
+    fout << outPutText;
+  }
+  else{
+    fout << "unable to open file" << endl;
+  }
+}

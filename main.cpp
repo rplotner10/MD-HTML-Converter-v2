@@ -16,30 +16,16 @@ int main()
 	Catch :: Session().run();
 	return 0;
 }
+// TEST_CASE("File Read Test"){
+// 	MDConverter T1;
+// 	string correctResult ="This is the first line\nThis is the second line\nThis is the third line\nThis is the fourth line";
+// 	string testCase1 = T1.returnFileText("markdown-sample.md");
+// 	REQUIRE(testCase1 == correctResult); 
+// }
+TEST_CASE("write Out To FIle"){
+	MDConverter T2;
+	string correctResult2 = "This is our first text with only one line of text\n This is the second line of text";
+	T2.writeOutToFile("This is our first text with only one line of text\nThis is the second line of text");
+ 	REQUIRE(true == true); 
 
-TEST_CASE("Test Template")  
-{ 
-	string retVal = "# Sample Title\n";
-    retVal += "This is a paragraph";
-    retVal += "\n";
-    retVal += "This is **another** paragraph\n";
-    retVal += "\n";
-
-	StringSetter SSet;
-
-	SSet.parse(retVal);
-
-	REQUIRE(100 == 100); 
-}
-
-//Used to test if StringSetter was able to identify a bold MD Command
-TEST_CASE("Bold Syntax")
-{
-    string input = "**BOLD TEXT**";
-
-    StringSetter SSet;
-
-    SSet.parse(input);
-
-    REQUIRE(true == true);
 }

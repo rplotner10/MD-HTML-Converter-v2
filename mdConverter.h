@@ -12,7 +12,7 @@ class MDConverter
     public:
 
       string returnFileText(string filePath);
-
+      void writeOutToFile(string outPutText);
     private:
 
 };
