@@ -11,7 +11,7 @@ class MDConverter
 {
     public:
     
-    string returnFileText(string filePath);
+      string returnFileText(string filePath);
 
     private:
 
