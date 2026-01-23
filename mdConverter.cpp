@@ -18,7 +18,8 @@
     ofstream outputFile("output.txt");
     }
 
-  string MDConverter :: returnFileText(string path){
+  string MDConverter :: returnFileText(string path)
+  {
     ifstream infile;
     string filePath = path;
     string finalResult;
