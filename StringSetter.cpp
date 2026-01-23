@@ -2,25 +2,15 @@
 
 void StringSetter::setParagraph(string line, int start, int end)
 {
-    LineSetter para;
-
-    para.paragraph();
 
     for (int i = start; i <= end; i++)
     {
         char c = line[i];
-        //if statements to determine code
-        if (c == '*') //italics
-        {
-            if (line[i+1] == '*') //bold
-            {
-
-            }
-            
-        }
+        
 
     }  
 }
+
 string StringSetter::parse(string mdStr)
 {
     stringstream ss(mdStr);
@@ -29,13 +19,13 @@ string StringSetter::parse(string mdStr)
 
     while(getline(ss, lineInput))
     {
-        cout << lineInput << endl;
-        
+        //cheks if empty line
         if (lineInput == "")
         {
             continue;
         }
         
+        //find first no space char \/
         int i = -1;
         char c;
         do
@@ -43,25 +33,39 @@ string StringSetter::parse(string mdStr)
             i++;
             c = lineInput[i];
         }
-        while(c != ' ');
+        while(c == ' ');
 
-        int start = i;
-        
-        if ((char) tolower(c) >= 97 && (char) tolower(c) <= 122)
+        //Check what first character is to see if in MD Block
+
+        //if statements to determine code
+        if (c == '*') //italics
         {
-            //remove end spaces
-            for (i = lineInput.size()-1; i >= 0; i--)
+            if (lineInput[i+1] == '*') //bold
             {
-                if (lineInput[i] != ' ')
-                {
-                    break;
-                }
-
+                LineSetter bold;
+                bold.bold();
             }
-            setParagraph(lineInput, start, i);
-
+            else
+            {
+                LineSetter italics;
+                italics.italics();
+            }
+        }
+        else if (c == '`') //monospace
+        {
+            LineSetter monospace;
+            monospace.monospace();
         }
         
+
+        //if paragraph \/
+        if (true)
+        {
+            LineSetter para;
+            para.paragraph(i, lineInput);
+        }
+    
+
     }
     return "";
 }

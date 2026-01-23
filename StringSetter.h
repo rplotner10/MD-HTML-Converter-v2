@@ -12,8 +12,7 @@ using namespace std;
 class StringSetter
 {
     public:
-        //StringSetter();
-
+    
         string parse(string mdStr);
 
     private:

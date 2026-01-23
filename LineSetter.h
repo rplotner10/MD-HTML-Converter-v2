@@ -11,7 +11,7 @@
         void bold();
         void italics();
         void monospace();
-        void paragraph();
+        void paragraph(int start, string line);
 
     private:
         string startPattern;
@@ -24,5 +24,5 @@
         string startTag;
         string endtag;
 
-        vector <LineSetter> children;
+        vector <LineSetter> children; //Child Elements
  };
