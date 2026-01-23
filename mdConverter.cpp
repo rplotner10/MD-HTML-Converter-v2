@@ -1,6 +1,7 @@
   #include "mdConverter.h"
   #include <fstream>
   #include <iostream>
+  #include <sstream>
   using namespace std;
 
   void MDConverter :: FileConverter()
@@ -22,8 +23,10 @@
     string filePath = path;
     string finalResult;
     infile.open(filePath);
-    if(infile.good()){
-      getline(infile,finalResult);    
+    if(infile.is_open()){
+      stringstream line;
+      line << infile.rdbuf();
+      finalResult = line.str();
     }
     else{
       cout << "Error opening file." << endl;

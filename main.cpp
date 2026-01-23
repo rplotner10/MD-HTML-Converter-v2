@@ -11,7 +11,7 @@ int main(){
 }
 TEST_CASE("File Read Test"){
 	MDConverter T1;
-	string correctResult ="#Sample Titlte \\n This is a paragraph \\n\\n This is **another** paragraph ... \\n";
+	string correctResult ="This is the first line\nThis is the second line\nThis is the third line\nThis is the fourth line";
 	string testCase1 = T1.returnFileText("markdown-sample.md");
 	REQUIRE(testCase1 == correctResult); 
 }
