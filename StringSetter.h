@@ -1,9 +1,11 @@
 #pragma once
 
+#include "LineSetter.h"
+
 #include <string>
 #include <sstream>
 #include <iostream>
-
+#include <vector>
 
 using namespace std;
 
@@ -36,5 +38,5 @@ class StringSetter
 
         string outputText;
 
-        
+        vector <LineSetter> LSElements;
 };

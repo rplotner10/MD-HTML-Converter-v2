@@ -2,15 +2,9 @@
 
 void StringSetter::setParagraph(string line, int start, int end)
 {
-    string startPattern = "";
-    string endPattern = "";
-    bool inMarkdown = false;
-    int posContentStart = start;
-    int posContentEnd = end;
-    string startTag = "<p>";
-    string endtag = "<\\p>";
+    LineSetter para;
 
-    bool inParagraph = true;
+    para.paragraph();
 
     for (int i = start; i <= end; i++)
     {
@@ -20,13 +14,12 @@ void StringSetter::setParagraph(string line, int start, int end)
         {
             if (line[i+1] == '*') //bold
             {
-                
+
             }
             
         }
 
-    }
-    
+    }  
 }
 string StringSetter::parse(string mdStr)
 {
@@ -53,9 +46,10 @@ string StringSetter::parse(string mdStr)
         while(c != ' ');
 
         int start = i;
-
+        
         if ((char) tolower(c) >= 97 && (char) tolower(c) <= 122)
         {
+            //remove end spaces
             for (i = lineInput.size()-1; i >= 0; i--)
             {
                 if (lineInput[i] != ' ')
@@ -68,8 +62,6 @@ string StringSetter::parse(string mdStr)
 
         }
         
-
     }
     return "";
-
 }

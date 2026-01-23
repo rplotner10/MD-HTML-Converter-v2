@@ -17,7 +17,6 @@ using namespace std;
 //--
 TEST_CASE("Test Template")  
 { 
-
 	string retVal = "# Sample Title\n";
 
     retVal += "This is a paragraph";
