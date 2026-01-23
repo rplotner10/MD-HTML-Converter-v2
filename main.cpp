@@ -31,6 +31,6 @@ TEST_CASE("Test Template")
 	StringSetter SSet;
 
 	SSet.parse(retVal);
- 
+
 	REQUIRE(100 == 100); 
 }
