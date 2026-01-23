@@ -16,3 +16,17 @@
 
     ofstream outputFile("output.txt");
     }
+
+  string MDConverter :: returnFileText(string path){
+    ifstream infile;
+    string filePath = path;
+    string finalResult;
+    infile.open(filePath);
+    if(infile.good()){
+      getline(infile,finalResult);    
+    }
+    else{
+      cout << "Error opening file." << endl;
+    }
+    return finalResult;
+  }
