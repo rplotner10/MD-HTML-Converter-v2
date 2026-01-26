@@ -9,20 +9,13 @@
  {
     public:
         void bold(int start, int end, string line);
-        void italics();
-        void monospace();
+        void italics(int start, int end, string line);
+        void monospace(int start, int end, string line);
         void paragraph(int start, string line);
 
         string compileLine();
 
     private:
-        string startPattern;
-        string endPattern;
-
-        bool inMarkdown;
-        int posContentStart;
-        int posContentEnd;
-
         string startTag;
         string endTag;
 

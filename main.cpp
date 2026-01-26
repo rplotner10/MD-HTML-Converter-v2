@@ -35,5 +35,41 @@ TEST_CASE("bold test")
 {
 	string input = "**some text**";
 	StringSetter s;
-	s.parse(input);
+	REQUIRE(s.parse(input) == "<b>some text</b>\n");
+
+}
+TEST_CASE("bold test 2")
+{
+	string input = "**some longer text**";
+	StringSetter s;
+	REQUIRE(s.parse(input) == "<b>some longer text</b>\n");
+
+}
+TEST_CASE("italics test")
+{
+	string input = "*some text*";
+	StringSetter s;
+	REQUIRE(s.parse(input) == "<em>some text</em>\n");
+
+}
+TEST_CASE("italics test 2")
+{
+	string input = "*some longer text*";
+	StringSetter s;
+	REQUIRE(s.parse(input) == "<em>some longer text</em>\n");
+
+}
+TEST_CASE("monospace test")
+{
+	string input = "`some text`";
+	StringSetter s;
+	REQUIRE(s.parse(input) == "<code>some text</code>\n");
+
+}
+TEST_CASE("monospace test 2")
+{
+	string input = "`some longer text`";
+	StringSetter s;
+	REQUIRE(s.parse(input) == "<code>some longer text</code>\n");
+
 }

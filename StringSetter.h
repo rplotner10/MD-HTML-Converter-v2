@@ -17,12 +17,16 @@ class StringSetter
 
     private:
 
+        void compileLS();
+
         void findHtmlTag();
 
         void setParagraph(string line, int start, int end);
         void setItalics();
         void setBold();
         void setMonospace();
+
+        int findEndTag(string line, char tag, int startTag);
 
 
         string startPattern;
