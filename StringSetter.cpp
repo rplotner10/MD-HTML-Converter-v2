@@ -69,3 +69,21 @@ string StringSetter::parse(string mdStr)
     }
     return "";
 }
+
+string StringSetter::htmlStartLabeling()
+{
+    string htmlSRetVal;
+
+    htmlSRetVal = "<!DOCTYPE html>\n<html>\n<body>\n";
+
+    return htmlSRetVal;
+}
+
+string StringSetter::htmlEndingLabeling()
+{
+    string htmlERetVal;
+
+    htmlERetVal = "</body>\n</html>\n";
+
+    return htmlERetVal;
+}

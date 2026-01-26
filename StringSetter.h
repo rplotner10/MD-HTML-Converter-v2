@@ -14,6 +14,11 @@ class StringSetter
     public:
     
         string parse(string mdStr);
+        
+        string htmlStartLabeling();
+
+        string htmlEndingLabeling();
+
 
     private:
 
