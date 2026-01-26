@@ -8,10 +8,12 @@
  class LineSetter
  {
     public:
-        void bold();
+        void bold(int start, int end, string line);
         void italics();
         void monospace();
         void paragraph(int start, string line);
+
+        string compileLine();
 
     private:
         string startPattern;
@@ -22,7 +24,9 @@
         int posContentEnd;
 
         string startTag;
-        string endtag;
+        string endTag;
+
+        string text;
 
         vector <LineSetter> children; //Child Elements
  };

@@ -1,8 +1,16 @@
 #include "LineSetter.h"
 
-void LineSetter::bold()
+string LineSetter::compileLine()
 {
-    cout << "found bold\n";
+    return (startTag + text + endTag);
+}
+void LineSetter::bold(int start, int end, string line)
+{
+    int posContentStart = start;
+    startTag = "<b>";
+    endTag = "<\\b>";
+
+    text = line.substr(start, (end - start));
 }
 void LineSetter::italics()
 {
@@ -34,11 +42,10 @@ void LineSetter::paragraph(int start, string line)
 
     }
 
-
     string startPattern = "";
     string endPattern = "";
     bool inMarkdown = false;
     int posContentStart = start;
     string startTag = "<p>";
-    string endtag = "<\\p>";
+    string endTag = "<\\p>";
 }

@@ -42,8 +42,19 @@ string StringSetter::parse(string mdStr)
         {
             if (lineInput[i+1] == '*') //bold
             {
+                int endBold;
+                for (int j = i+1; j < lineInput.size(); j++)
+                {
+                    char ci;
+                    ci = lineInput[j];
+                    if (ci == '*')
+                    {
+                        endBold = j-1;
+                    }
+                }
                 LineSetter bold;
-                bold.bold();
+                bold.bold(i+2, endBold, lineInput);
+                LSElements.push_back(bold);
             }
             else
             {
