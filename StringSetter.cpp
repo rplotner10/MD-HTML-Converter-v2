@@ -1,5 +1,13 @@
 #include "StringSetter.h"
 
+void StringSetter::compileLS()
+{
+    for(LineSetter ls : LSElements)
+    {
+        outputText.append(ls.compileLine() + "\n");
+    }
+}
+
 void StringSetter::setParagraph(string line, int start, int end)
 {
 
@@ -42,22 +50,29 @@ string StringSetter::parse(string mdStr)
         {
             if (lineInput[i+1] == '*') //bold
             {
+                int endBold = findEndTag(lineInput, '*', i+2);
+
                 LineSetter bold;
-                bold.bold();
+                bold.bold(i+2, endBold, lineInput);
+                LSElements.push_back(bold);
             }
             else
             {
+                int endItalics = findEndTag(lineInput, '*', i+1);
+
                 LineSetter italics;
-                italics.italics();
+                italics.italics(i+1, endItalics, lineInput);
+                LSElements.push_back(italics);
             }
         }
         else if (c == '`') //monospace
         {
-            LineSetter monospace;
-            monospace.monospace();
-        }
-        
+            int endMonospace = findEndTag(lineInput, '`', i+1);
 
+            LineSetter monospace;
+            monospace.monospace(i+1, endMonospace, lineInput);
+            LSElements.push_back(monospace);
+        }  
         //if paragraph \/
         if (true)
         {
@@ -86,4 +101,16 @@ string StringSetter::htmlEndingLabeling()
     htmlERetVal = "</body>\n</html>\n";
 
     return htmlERetVal;
+
+    compileLS();
+
+    return outputText;
+}
+
+int StringSetter::findEndTag(string line, char tag, int startTag)
+{
+    string lineI = line.substr(startTag);
+                
+    //offsets for original line
+    return (lineI.find(tag) + startTag);
 }

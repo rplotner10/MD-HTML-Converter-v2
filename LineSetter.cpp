@@ -1,18 +1,29 @@
 #include "LineSetter.h"
 
-void LineSetter::bold()
+string LineSetter::compileLine()
 {
-    cout << "found bold\n";
+    return (startTag + text + endTag);
 }
-void LineSetter::italics()
+void LineSetter::bold(int start, int end, string line)
 {
-    cout << "found italics\n";
+    startTag = "<b>";
+    endTag = "</b>";
 
+    text = line.substr(start, (end - start));
 }
-void LineSetter::monospace()
+void LineSetter::italics(int start, int end, string line)
 {
-    cout << "found monospace\n";
+    startTag = "<em>";
+    endTag = "</em>";
 
+    text = line.substr(start, (end - start));
+}
+void LineSetter::monospace(int start, int end, string line)
+{
+    startTag = "<code>";
+    endTag = "</code>";
+
+    text = line.substr(start, (end - start));
 }
 //NOT FINISHED!!!
 void LineSetter::paragraph(int start, string line)
@@ -34,11 +45,6 @@ void LineSetter::paragraph(int start, string line)
 
     }
 
-
-    string startPattern = "";
-    string endPattern = "";
-    bool inMarkdown = false;
-    int posContentStart = start;
     string startTag = "<p>";
-    string endtag = "<\\p>";
+    string endTag = "<\\p>";
 }
