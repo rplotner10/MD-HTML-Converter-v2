@@ -11,7 +11,7 @@
         void bold(int start, int end, string line);
         void italics(int start, int end, string line);
         void monospace(int start, int end, string line);
-        void paragraph(int start, string line);
+        void paragraph(string line);
 
         string compileLine();
 

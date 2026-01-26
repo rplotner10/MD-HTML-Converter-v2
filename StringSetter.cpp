@@ -23,13 +23,32 @@ string StringSetter::parse(string mdStr)
 {
     stringstream ss(mdStr);
 
+    inParagraph = false;
+
     string lineInput;
+
+    string paragraphText;
+
+    TextMDCheck TMDCheck;
 
     while(getline(ss, lineInput))
     {
         //cheks if empty line
         if (lineInput == "")
         {
+            if(inParagraph)
+            {
+                LineSetter para;
+                para.paragraph(paragraphText);
+                inParagraph = false;
+
+            }
+            continue;
+        }
+
+        if(inParagraph)
+        {
+            paragraphText.append(" " + lineInput);
             continue;
         }
         
@@ -45,44 +64,24 @@ string StringSetter::parse(string mdStr)
 
         //Check what first character is to see if in MD Block
 
-        //if statements to determine code
-        if (c == '*') //italics
-        {
-            if (lineInput[i+1] == '*') //bold
-            {
-                int endBold = findEndTag(lineInput, '*', i+2);
+        bool inP;
 
-                LineSetter bold;
-                bold.bold(i+2, endBold, lineInput);
-                LSElements.push_back(bold);
-            }
-            else
-            {
-                int endItalics = findEndTag(lineInput, '*', i+1);
-
-                LineSetter italics;
-                italics.italics(i+1, endItalics, lineInput);
-                LSElements.push_back(italics);
-            }
+        LineSetter element = TMDCheck.checkMD(inP, i, lineInput);
+        
+        if(inP){
+            LSElements.push_back(element);
         }
-        else if (c == '`') //monospace
-        {
-            int endMonospace = findEndTag(lineInput, '`', i+1);
 
-            LineSetter monospace;
-            monospace.monospace(i+1, endMonospace, lineInput);
-            LSElements.push_back(monospace);
-        }  
-        //if paragraph \/
-        if (true)
-        {
-            LineSetter para;
-            para.paragraph(i, lineInput);
-        }
+        
+        // { //InParagraph
+        //    inParagraph = true; 
+        //    paragraphText.append(lineInput);
+        // }  
     
 
     }
-    return "";
+    compileLS();
+    return outputText;
 }
 
 string StringSetter::htmlStartLabeling()

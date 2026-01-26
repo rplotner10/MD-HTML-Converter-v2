@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LineSetter.h"
+#include "TextMDCheck.h"
 
 #include <string>
 #include <sstream>
@@ -19,6 +20,8 @@ class StringSetter
 
         string htmlEndingLabeling();
 
+        int findEndTag(string line, char tag, int startTag);
+
 
     private:
 
@@ -31,7 +34,7 @@ class StringSetter
         void setBold();
         void setMonospace();
 
-        int findEndTag(string line, char tag, int startTag);
+ 
 
 
         string startPattern;
