@@ -48,3 +48,22 @@ void LineSetter::paragraph(int start, string line)
     string startTag = "<p>";
     string endTag = "<\\p>";
 }
+void LineSetter::header(int headers,string lineInput)
+{ 
+    string textWNoPound;
+    for(int i =0;i<lineInput.length();i++)
+    {
+        if(lineInput[i] != '#')
+        {
+            textWNoPound += lineInput[i];
+        }
+        else
+        {
+
+        }
+    }
+    string headerNumInString = to_string(headers);
+    string returnedHeader = "<h" + headerNumInString + '>';
+    startTag = returnedHeader;
+    endTag = returnedHeader;
+}

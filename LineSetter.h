@@ -12,6 +12,7 @@
         void italics(int start, int end, string line);
         void monospace(int start, int end, string line);
         void paragraph(int start, string line);
+        void header(int headers,string lineInput);
 
         string compileLine();
 

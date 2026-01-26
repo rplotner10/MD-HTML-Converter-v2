@@ -8,17 +8,6 @@ void StringSetter::compileLS()
     }
 }
 
-void StringSetter::setParagraph(string line, int start, int end)
-{
-
-    for (int i = start; i <= end; i++)
-    {
-        char c = line[i];
-        
-
-    }  
-}
-
 string StringSetter::parse(string mdStr)
 {
     stringstream ss(mdStr);
@@ -73,6 +62,21 @@ string StringSetter::parse(string mdStr)
             monospace.monospace(i+1, endMonospace, lineInput);
             LSElements.push_back(monospace);
         }  
+        else if(c == '#')
+        {
+            int headerNum = 0;
+            int p = i;
+            while(c == '#')
+            {
+                c = lineInput[p];
+                headerNum+= 1;
+                p++;
+
+            }
+            LineSetter H1;
+            H1.header(headerNum,lineInput);
+            LSElements.push_back(H1);
+        }
         //if paragraph \/
         if (true)
         {

@@ -30,6 +30,7 @@ class StringSetter
         void setItalics();
         void setBold();
         void setMonospace();
+        
 
         int findEndTag(string line, char tag, int startTag);
 
