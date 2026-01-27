@@ -63,7 +63,8 @@ void LineSetter::header(int headers,string lineInput)
         }
     }
     string headerNumInString = to_string(headers);
-    string returnedHeader = "<h" + headerNumInString + '>';
-    startTag = returnedHeader;
-    endTag = returnedHeader;
+    startTag = "<h";
+    endTag = "</h";
+    // not sure where to sotre the final html text form
+    text = startTag + headerNumInString + '>' +  textWNoPound + endTag + headerNumInString + '>';
 }

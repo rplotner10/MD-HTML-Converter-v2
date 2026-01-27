@@ -85,11 +85,11 @@ TEST_CASE("header test 1")
 {
 	string input = "#This is header one";
 	StringSetter s;
-	REQUIRE(s.parse(input) == "<h1>This is header one<h1>");
+	REQUIRE(s.parse(input) == "<h1>This is header one</h1>");
 }
 TEST_CASE("header test 2")
 {
-	string input = "##This is header one";
+	string input = "####This is header four";
 	StringSetter s;
-	REQUIRE(s.parse(input) == "<h2>This is header one<h2>");
+	REQUIRE(s.parse(input) == "<h4>This is header four</h4>");
 }
