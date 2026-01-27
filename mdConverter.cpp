@@ -1,5 +1,20 @@
 #include "mdConverter.h"
 
+void MDConverter :: compileDoc(string filePath)
+{
+    string inputText = returnFileText(filePath);
+
+    StringSetter S1;
+
+    S1.htmlStartLabeling();
+
+    S1.parse(inputText);
+
+    writeOutToFile(S1.htmlEndingLabeling());
+}
+
+
+
 string MDConverter :: returnFileText(string path)
 {
   ifstream infile;
@@ -23,7 +38,7 @@ void MDConverter :: writeOutToFile(string outPutText)
 {
   ofstream fout;
   string text = outPutText;
-  fout.open("fileWText.txt");
+  fout.open("demo-test.html");
   if(fout.is_open())
   {
     fout << outPutText;

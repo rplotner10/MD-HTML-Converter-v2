@@ -17,10 +17,10 @@ class LineSetter;
 class StringSetter
 {
     public:
-    
+
         string parse(string mdStr);
         
-        string htmlStartLabeling();
+        void htmlStartLabeling();
 
         string htmlEndingLabeling();
 

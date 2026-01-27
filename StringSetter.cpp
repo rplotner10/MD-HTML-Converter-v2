@@ -34,6 +34,7 @@ string StringSetter::parse(string mdStr)
                 inParagraph = false;
 
                 LSElements.push_back(para);
+                paragraphText = "";
 
             }
             continue;
@@ -90,18 +91,24 @@ string StringSetter::parse(string mdStr)
     
 
     }
+    if(inParagraph){
+        LineSetter para;
+        para.paragraph(paragraphText);
+        inParagraph = false;
 
+        LSElements.push_back(para);
+    }
     compileLS();
     return outputText;
 }
 
-string StringSetter::htmlStartLabeling()
+void StringSetter::htmlStartLabeling()
 {
     string htmlSRetVal;
 
     htmlSRetVal = "<!DOCTYPE html>\n<html>\n<body>\n";
 
-    return htmlSRetVal;
+    outputText.append(htmlSRetVal);
 }
 
 string StringSetter::htmlEndingLabeling()
@@ -110,9 +117,7 @@ string StringSetter::htmlEndingLabeling()
 
     htmlERetVal = "</body>\n</html>\n";
 
-    return htmlERetVal;
-
-    compileLS();
+    outputText.append(htmlERetVal);
 
     return outputText;
 }
