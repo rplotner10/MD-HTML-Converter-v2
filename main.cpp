@@ -43,8 +43,11 @@ TEST_CASE("HTML starting labeling")
 TEST_CASE("header test 1")
 {
 	string input = "###This is header one";
+	
 	StringSetter s;
-	REQUIRE(s.parse(input) == "<b>some text</b>\n");
+	string output1 = "<h3>This is header one</h3>\n";
+	string output = s.parse(input);
+	REQUIRE(output == "<h3>This is header one</h3>\n");
 
 }
 TEST_CASE("bold test 2")
