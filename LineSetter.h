@@ -11,37 +11,38 @@ using namespace std;
  
 class LineSetter
 {
-public:
-    void bold(int start, int end, string line);
-    void italics(int start, int end, string line);
-    void monospace(int start, int end, string line);
-    void paragraph(string line);
+    public:
+        void bold(int start, int end, string line);
+        void italics(int start, int end, string line);
+        void monospace(int start, int end, string line);
+        void paragraph(string line);
+        void header(int headers,string lineInput);
 
-    string compileLine();
+        string compileLine();
 
-    bool isParagraph();
+        bool isParagraph();
 
-    vector <LineSetter> getChildren();
+        vector <LineSetter> getChildren();
 
-    int getStartPos();
-    int getEndPos();
+        int getStartPos();
+        int getEndPos();
 
-    string getText();
+        string getText();
 
-    bool hasChildren();
+        bool hasChildren();
 
-private:
-    bool iP; //isParagraph bool val
+    private:
+        bool iP; //isParagraph bool val
 
-    bool hC; //hasChildren bool val
+        bool hC; //hasChildren bool val
 
-    int startPos;
-    int endPos;
+        int startPos;
+        int endPos;
 
-    string startTag;
-    string endTag;
+        string startTag;
+        string endTag;
 
-    string text;
+        string text;
 
-    vector <LineSetter> children; //Child Elements
+        vector <LineSetter> children; //Child Elements
 };
