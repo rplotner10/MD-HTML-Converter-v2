@@ -9,7 +9,7 @@ string LineSetter::compileLine()
     {
         //adds all child elements
         int lastChildEndPos = 0;
-        for(LineSetter child : children)
+        for(const LineSetter& child : children)
         {
             outputHelper += text.substr(lastChildEndPos, child.startPos - lastChildEndPos);
             outputHelper += (child.startTag + child.text + child.endTag);

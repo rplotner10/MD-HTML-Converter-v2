@@ -20,7 +20,7 @@ int main()
 TEST_CASE("File Read Test")
 {
 	MDConverter T1;
-	string correctResult ="This is the first line\nThis is the second line\nThis is the third line\nThis is the fourth line";
+	string correctResult ="This is the first line\nThis is the second line\nThis is the third line\nThis is the fourth line\n";
 	string testCase1 = T1.returnFileText("markdown-sample.md");
 	REQUIRE(testCase1 == correctResult); 
 }

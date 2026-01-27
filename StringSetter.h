@@ -33,14 +33,6 @@ class StringSetter
 
         void findHtmlTag();
 
-        void setParagraph(string line, int start, int end);
-        void setItalics();
-        void setBold();
-        void setMonospace();
-
- 
-
-
         string startPattern;
         string endPattern;
         bool inMarkdown;

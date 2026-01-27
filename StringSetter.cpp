@@ -10,17 +10,6 @@ void StringSetter::compileLS()
     }
 }
 
-void StringSetter::setParagraph(string line, int start, int end)
-{
-
-    for (int i = start; i <= end; i++)
-    {
-        char c = line[i];
-        
-
-    }  
-}
-
 string StringSetter::parse(string mdStr)
 {
     stringstream ss(mdStr);
