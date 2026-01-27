@@ -66,15 +66,15 @@ string StringSetter::parse(string mdStr)
         {
             int headerNum = 0;
             int p = i;
-            cout << p << endl;
             while(c == '#')
             {
-                c = lineInput[p];
+                
                 headerNum+= 1;
-                c++;
+                p++;
+                c = lineInput[p];
             }
             LineSetter H1;
-            H1.header(headerNum,lineInput);
+            H1.header(headerNum, lineInput);
             LSElements.push_back(H1);
         }
         //if paragraph \/
@@ -86,7 +86,9 @@ string StringSetter::parse(string mdStr)
     
 
     }
-    return "";
+
+    compileLS();
+    return outputText;
 }
 
 string StringSetter::htmlStartLabeling()

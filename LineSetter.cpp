@@ -48,22 +48,20 @@ void LineSetter::paragraph(int start, string line)
     string startTag = "<p>";
     string endTag = "<\\p>";
 }
-void LineSetter::header(int headers,string lineInput)
+void LineSetter::header(int headers, string lineInput)
 { 
     string textWNoPound;
+    //use startIndex, from p in the previous funciton
     for(int i =0;i<=lineInput.length();i++)
     {
         if(lineInput[i] != '#')
         {
             textWNoPound += lineInput[i];
         }
-        else
-        {
-
-        }
     }
     string headerNumInString = to_string(headers);
-    startTag = "<h";
-    endTag = "</h";
-    cout << startTag + headerNumInString + '>' +  textWNoPound + endTag + headerNumInString + '>';
+    startTag = "<h" + headerNumInString + ">";
+    endTag = "</h" + headerNumInString + ">";
+
+    text = textWNoPound;
 }
