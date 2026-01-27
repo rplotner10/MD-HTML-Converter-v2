@@ -1,4 +1,6 @@
 #include "StringSetter.h"
+#include "TextMDCheck.h"
+#include "LineSetter.h"
 
 void StringSetter::compileLS()
 {
@@ -8,28 +10,38 @@ void StringSetter::compileLS()
     }
 }
 
-void StringSetter::setParagraph(string line, int start, int end)
-{
-
-    for (int i = start; i <= end; i++)
-    {
-        char c = line[i];
-        
-
-    }  
-}
-
 string StringSetter::parse(string mdStr)
 {
     stringstream ss(mdStr);
 
+    inParagraph = false;
+
     string lineInput;
+
+    string paragraphText;
+
+    TextMDCheck TMDCheck;
 
     while(getline(ss, lineInput))
     {
-        //cheks if empty line
+        //checks if empty line
         if (lineInput == "")
         {
+            if(inParagraph)
+            {
+                LineSetter para;
+                para.paragraph(paragraphText);
+                inParagraph = false;
+
+                LSElements.push_back(para);
+
+            }
+            continue;
+        }
+
+        if(inParagraph)
+        {
+            paragraphText.append(" " + lineInput);
             continue;
         }
         
@@ -45,44 +57,25 @@ string StringSetter::parse(string mdStr)
 
         //Check what first character is to see if in MD Block
 
-        //if statements to determine code
-        if (c == '*') //italics
-        {
-            if (lineInput[i+1] == '*') //bold
-            {
-                int endBold = findEndTag(lineInput, '*', i+2);
+        bool inP;
 
-                LineSetter bold;
-                bold.bold(i+2, endBold, lineInput);
-                LSElements.push_back(bold);
-            }
-            else
-            {
-                int endItalics = findEndTag(lineInput, '*', i+1);
+        LineSetter element = TMDCheck.checkMD(inP, i, lineInput);
 
-                LineSetter italics;
-                italics.italics(i+1, endItalics, lineInput);
-                LSElements.push_back(italics);
-            }
-        }
-        else if (c == '`') //monospace
+        if(!inP)
         {
-            int endMonospace = findEndTag(lineInput, '`', i+1);
-
-            LineSetter monospace;
-            monospace.monospace(i+1, endMonospace, lineInput);
-            LSElements.push_back(monospace);
-        }  
-        //if paragraph \/
-        if (true)
+            LSElements.push_back(element);
+        }else
         {
-            LineSetter para;
-            para.paragraph(i, lineInput);
+            inParagraph = true;
+            paragraphText.append(lineInput);
         }
     
 
     }
-    return "";
+
+    compileLS();
+
+    return outputText;
 }
 
 string StringSetter::htmlStartLabeling()

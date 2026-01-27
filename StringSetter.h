@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LineSetter.h"
+#include "TextMDCheck.h"
 
 #include <string>
 #include <sstream>
@@ -8,6 +9,10 @@
 #include <vector>
 
 using namespace std;
+
+class TextMDCheck;
+
+class LineSetter;
 
 class StringSetter
 {
@@ -19,20 +24,14 @@ class StringSetter
 
         string htmlEndingLabeling();
 
+        int findEndTag(string line, char tag, int startTag);
+
 
     private:
 
         void compileLS();
 
         void findHtmlTag();
-
-        void setParagraph(string line, int start, int end);
-        void setItalics();
-        void setBold();
-        void setMonospace();
-
-        int findEndTag(string line, char tag, int startTag);
-
 
         string startPattern;
         string endPattern;
