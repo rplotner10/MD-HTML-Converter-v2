@@ -51,7 +51,7 @@ void LineSetter::paragraph(int start, string line)
 void LineSetter::header(int headers,string lineInput)
 { 
     string textWNoPound;
-    for(int i =0;i<lineInput.length();i++)
+    for(int i =0;i<=lineInput.length();i++)
     {
         if(lineInput[i] != '#')
         {
@@ -65,6 +65,5 @@ void LineSetter::header(int headers,string lineInput)
     string headerNumInString = to_string(headers);
     startTag = "<h";
     endTag = "</h";
-    // not sure where to sotre the final html text form
-    text = startTag + headerNumInString + '>' +  textWNoPound + endTag + headerNumInString + '>';
+    cout << startTag + headerNumInString + '>' +  textWNoPound + endTag + headerNumInString + '>';
 }

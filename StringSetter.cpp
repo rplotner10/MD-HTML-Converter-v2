@@ -66,12 +66,12 @@ string StringSetter::parse(string mdStr)
         {
             int headerNum = 0;
             int p = i;
+            cout << p << endl;
             while(c == '#')
             {
                 c = lineInput[p];
                 headerNum+= 1;
-                p++;
-
+                c++;
             }
             LineSetter H1;
             H1.header(headerNum,lineInput);
