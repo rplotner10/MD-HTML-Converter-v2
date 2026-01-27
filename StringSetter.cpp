@@ -1,4 +1,6 @@
 #include "StringSetter.h"
+#include "TextMDCheck.h"
+#include "LineSetter.h"
 
 void StringSetter::compileLS()
 {
@@ -33,7 +35,7 @@ string StringSetter::parse(string mdStr)
 
     while(getline(ss, lineInput))
     {
-        //cheks if empty line
+        //checks if empty line
         if (lineInput == "")
         {
             if(inParagraph)
@@ -41,6 +43,8 @@ string StringSetter::parse(string mdStr)
                 LineSetter para;
                 para.paragraph(paragraphText);
                 inParagraph = false;
+
+                LSElements.push_back(para);
 
             }
             continue;
@@ -67,20 +71,21 @@ string StringSetter::parse(string mdStr)
         bool inP;
 
         LineSetter element = TMDCheck.checkMD(inP, i, lineInput);
-        
-        if(inP){
-            LSElements.push_back(element);
-        }
 
-        
-        // { //InParagraph
-        //    inParagraph = true; 
-        //    paragraphText.append(lineInput);
-        // }  
+        if(!inP)
+        {
+            LSElements.push_back(element);
+        }else
+        {
+            inParagraph = true;
+            paragraphText.append(lineInput);
+        }
     
 
     }
+
     compileLS();
+
     return outputText;
 }
 

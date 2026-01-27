@@ -17,13 +17,13 @@ int main()
 	Catch :: Session().run();
 	return 0;
 }
-// TEST_CASE("File Read Test")
-//{
-// 	MDConverter T1;
-// 	string correctResult ="This is the first line\nThis is the second line\nThis is the third line\nThis is the fourth line";
-// 	string testCase1 = T1.returnFileText("markdown-sample.md");
-// 	REQUIRE(testCase1 == correctResult); 
-// }
+TEST_CASE("File Read Test")
+{
+	MDConverter T1;
+	string correctResult ="This is the first line\nThis is the second line\nThis is the third line\nThis is the fourth line";
+	string testCase1 = T1.returnFileText("markdown-sample.md");
+	REQUIRE(testCase1 == correctResult); 
+}
 TEST_CASE("write Out To FIle")
 {
 	MDConverter T2;
@@ -81,4 +81,19 @@ TEST_CASE("monospace test 2")
 	StringSetter s;
 	REQUIRE(s.parse(input) == "<code>some longer text</code>\n");
 
+}
+
+
+TEST_CASE("basic paragraph")
+{
+	string input = "this is a paragraph\n\n";
+	StringSetter s;
+	REQUIRE(s.parse(input) == "<p>this is a paragraph</p>\n");
+}
+
+TEST_CASE("paragraph w/ bold in it")
+{
+	string input = "this is a **bold** paragraph\n\n";
+	StringSetter s;
+	REQUIRE(s.parse(input) == "<p>this is a <b>bold</b> paragraph</p>\n");
 }

@@ -10,6 +10,10 @@
 
 using namespace std;
 
+class TextMDCheck;
+
+class LineSetter;
+
 class StringSetter
 {
     public:

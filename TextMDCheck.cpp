@@ -36,6 +36,8 @@ LineSetter TextMDCheck::checkMD(bool &inPara, int charIndex, string line)
         return monospace;
     }
 
+    LineSetter empty;
+
     inPara = true;
-    
+    return empty;
 }

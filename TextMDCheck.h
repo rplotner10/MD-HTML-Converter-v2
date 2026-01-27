@@ -5,6 +5,8 @@
 
 using namespace std;
 
+class LineSetter;
+
 class TextMDCheck
 {
     public:
