@@ -123,3 +123,20 @@ bool LineSetter::hasChildren()
 {
     return hC;
 }
+void LineSetter::header(int headers, string lineInput)
+{ 
+    string textWNoPound;
+    //use startIndex, from p in the previous funciton
+    for(int i =0;i<=lineInput.length();i++)
+    {
+        if(lineInput[i] != '#')
+        {
+            textWNoPound += lineInput[i];
+        }
+    }
+    string headerNumInString = to_string(headers);
+    startTag = "<h" + headerNumInString + ">";
+    endTag = "</h" + headerNumInString + ">";
+
+    text = textWNoPound;
+}

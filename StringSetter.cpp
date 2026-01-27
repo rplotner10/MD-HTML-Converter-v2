@@ -59,6 +59,24 @@ string StringSetter::parse(string mdStr)
 
         bool inP;
 
+        if(c == '#')
+        {
+            int headerNum = 0;
+            int p = i;
+            while(c == '#')
+            {
+                
+                headerNum+= 1;
+                p++;
+                c = lineInput[p];
+            }
+            LineSetter H1;
+            H1.header(headerNum, lineInput);
+            LSElements.push_back(H1);
+            continue;
+
+        }
+
         LineSetter element = TMDCheck.checkMD(inP, i, lineInput);
 
         if(!inP)
@@ -74,7 +92,6 @@ string StringSetter::parse(string mdStr)
     }
 
     compileLS();
-
     return outputText;
 }
 

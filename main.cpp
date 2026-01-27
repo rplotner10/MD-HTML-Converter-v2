@@ -1,7 +1,7 @@
 #include <iostream>
 
 #define CATCH_CONFIG_NO_POSIX_SIGNALS
-//#define CATCH_CONFIG_MAIN  
+// #define CATCH_CONFIG_MAIN  
 #define CATCH_CONFIG_RUNNER
 
 #include "catch.hpp"
@@ -40,9 +40,9 @@ TEST_CASE("HTML starting labeling")
 	string retVal = T1.htmlStartLabeling();
  	REQUIRE(retVal == correctResult1); 
 }
-TEST_CASE("bold test")
+TEST_CASE("header test 1")
 {
-	string input = "**some text**";
+	string input = "###This is header one";
 	StringSetter s;
 	REQUIRE(s.parse(input) == "<b>some text</b>\n");
 
