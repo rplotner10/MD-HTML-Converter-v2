@@ -17,7 +17,7 @@ class LineSetter
         void monospace(int start, int end, string line);
         void paragraph(string line);
         void header(int headers,string lineInput);
-
+        void images(string link, string linkDescription);
         string compileLine();
 
         bool isParagraph();

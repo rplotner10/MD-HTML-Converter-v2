@@ -77,7 +77,57 @@ string StringSetter::parse(string mdStr)
             continue;
 
         }
+        if(c == '!')
+        {
+            string title;
+            string link;
+            
 
+            string test = "![some_text](some_text)";
+
+            if(lineInput[i + 1] == '['){
+                int g = i + 1;
+                while(c != ']'){
+                    g++;
+                    c = lineInput[g];
+                    if(c != ']'){
+                        title += c;
+                    }
+                    
+                }
+                g++;
+                if(lineInput[g] == '('){
+                    while(c != ')'){
+                        g++;
+                        c = lineInput[g];
+                        if(c != ')'){
+                            link += c;
+                        }
+                    }
+                    
+                }
+            }
+
+
+
+            // while(c != ')')
+            // {
+            //     title += c;
+            //     if(c == '[')  
+            //     {
+            //         if(c != ')')
+            //         {
+            //             link += c;
+            //         }
+            //     }
+            //     g++;
+            //     c = lineInput[g];
+            // }
+            LineSetter Image1;
+            Image1.images(link, title);
+            LSElements.push_back(Image1);
+            continue;
+        }
         LineSetter element = TMDCheck.checkMD(inP, i, lineInput);
 
         if(!inP)

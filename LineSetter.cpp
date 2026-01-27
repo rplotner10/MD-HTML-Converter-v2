@@ -140,3 +140,11 @@ void LineSetter::header(int headers, string lineInput)
 
     text = textWNoPound;
 }
+void LineSetter::images(string link, string linkDescription)
+{    
+    string linkURL = link;
+    string description = linkDescription;
+    startTag = "<img src=\"" + link + "\" alt=\"" + linkDescription;
+    endTag = "\">";
+    text = "";
+}

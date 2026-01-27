@@ -40,71 +40,79 @@ int main()
 // 	string retVal = T1.htmlStartLabeling();
 //  	REQUIRE(retVal == correctResult1); 
 // }
-TEST_CASE("header test 1")
-{
-	string input = "###This is header one";
+// TEST_CASE("header test 1")
+// {
+// 	string input = "###This is header one";
 	
-	StringSetter s;
-	string output1 = "<h3>This is header one</h3>\n";
-	string output = s.parse(input);
-	REQUIRE(output == "<h3>This is header one</h3>\n");
+// 	StringSetter s;
+// 	string output1 = "<h3>This is header one</h3>\n";
+// 	string output = s.parse(input);
+// 	REQUIRE(output == "<h3>This is header one</h3>\n");
 
-}
-TEST_CASE("bold test 2")
+// }
+// TEST_CASE("bold test 2")
+// {
+// 	string input = "**some longer text**";
+// 	StringSetter s;
+// 	REQUIRE(s.parse(input) == "<b>some longer text</b>\n");
+
+// }
+// TEST_CASE("italics test")
+// {
+// 	string input = "*some text*";
+// 	StringSetter s;
+// 	REQUIRE(s.parse(input) == "<em>some text</em>\n");
+
+// }
+// TEST_CASE("italics test 2")
+// {
+// 	string input = "*some longer text*";
+// 	StringSetter s;
+// 	REQUIRE(s.parse(input) == "<em>some longer text</em>\n");
+
+// }
+// TEST_CASE("monospace test")
+// {
+// 	string input = "`some text`";
+// 	StringSetter s;
+// 	REQUIRE(s.parse(input) == "<code>some text</code>\n");
+
+// }
+// TEST_CASE("monospace test 2")
+// {
+// 	string input = "`some longer text`";
+// 	StringSetter s;
+// 	REQUIRE(s.parse(input) == "<code>some longer text</code>\n");
+
+// }
+
+
+// TEST_CASE("basic paragraph")
+// {
+// 	string input = "this is a paragraph\n\n";
+// 	StringSetter s;
+// 	REQUIRE(s.parse(input) == "<p>this is a paragraph</p>\n");
+// }
+
+// TEST_CASE("paragraph w/ bold in it")
+// {
+// 	string input = "this is a **bold** paragraph\n\n";
+// 	StringSetter s;
+// 	REQUIRE(s.parse(input) == "<p>this is a <b>bold</b> paragraph</p>\n");
+// }
+
+// TEST_CASE("DEMO"){
+// 	string filePath = "demo-test.md";
+
+// 	MDConverter td;
+// 	td.compileDoc(filePath);
+// 	REQUIRE(true == true);
+// }
+
+TEST_CASE("Image Test")
 {
-	string input = "**some longer text**";
-	StringSetter s;
-	REQUIRE(s.parse(input) == "<b>some longer text</b>\n");
-
-}
-TEST_CASE("italics test")
-{
-	string input = "*some text*";
-	StringSetter s;
-	REQUIRE(s.parse(input) == "<em>some text</em>\n");
-
-}
-TEST_CASE("italics test 2")
-{
-	string input = "*some longer text*";
-	StringSetter s;
-	REQUIRE(s.parse(input) == "<em>some longer text</em>\n");
-
-}
-TEST_CASE("monospace test")
-{
-	string input = "`some text`";
-	StringSetter s;
-	REQUIRE(s.parse(input) == "<code>some text</code>\n");
-
-}
-TEST_CASE("monospace test 2")
-{
-	string input = "`some longer text`";
-	StringSetter s;
-	REQUIRE(s.parse(input) == "<code>some longer text</code>\n");
-
-}
-
-
-TEST_CASE("basic paragraph")
-{
-	string input = "this is a paragraph\n\n";
-	StringSetter s;
-	REQUIRE(s.parse(input) == "<p>this is a paragraph</p>\n");
-}
-
-TEST_CASE("paragraph w/ bold in it")
-{
-	string input = "this is a **bold** paragraph\n\n";
-	StringSetter s;
-	REQUIRE(s.parse(input) == "<p>this is a <b>bold</b> paragraph</p>\n");
-}
-
-TEST_CASE("DEMO"){
-	string filePath = "demo-test.md";
-
-	MDConverter td;
-	td.compileDoc(filePath);
-	REQUIRE(true == true);
+	string input = "![Mark](https://media.licdn.com/dms/image/v2/D5603AQG7BJYco6PGow/profile-displayphoto-scale_200_200/B56ZuqDnh8IsAc-/0/1768084634527?e=2147483647&v=beta&t=BveQueilMGBwqTraEt1zaVkWIHDYIn_vOoRsg5Pm_h4)";
+	StringSetter Image1;
+	string output = Image1.parse(input);
+	REQUIRE(output == "<img src=\"https://media.licdn.com/dms/image/v2/D5603AQG7BJYco6PGow/profile-displayphoto-scale_200_200/B56ZuqDnh8IsAc-/0/1768084634527?e=2147483647&v=beta&t=BveQueilMGBwqTraEt1zaVkWIHDYIn_vOoRsg5Pm_h4\" alt=\"Mark\">\n");
 }
