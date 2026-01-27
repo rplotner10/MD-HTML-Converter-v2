@@ -17,6 +17,8 @@ class LineSetter
         void monospace(int start, int end, string line);
         void paragraph(string line);
         void header(int headers,string lineInput);
+        void list(vector <string> listStrings, bool ordered);
+        void listElement(string std);
 
         string compileLine();
 
@@ -35,6 +37,8 @@ class LineSetter
         bool iP; //isParagraph bool val
 
         bool hC; //hasChildren bool val
+
+        bool iL; //isList bool val
 
         int startPos;
         int endPos;

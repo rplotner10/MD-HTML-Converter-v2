@@ -42,6 +42,9 @@ class StringSetter
         string endtag;
 
         bool inParagraph;
+        bool inList;
+
+        bool ordered;
 
         string outputText;
 

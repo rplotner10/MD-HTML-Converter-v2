@@ -15,10 +15,13 @@ string StringSetter::parse(string mdStr)
     stringstream ss(mdStr);
 
     inParagraph = false;
+    inList = false;
+    ordered = false;
 
     string lineInput;
 
     string paragraphText;
+    vector <string> listElements;
 
     TextMDCheck TMDCheck;
 
@@ -35,6 +38,12 @@ string StringSetter::parse(string mdStr)
 
                 LSElements.push_back(para);
                 paragraphText = "";
+
+            }else if(inList){
+                inList = false;
+                LineSetter list;
+                list.list(listElements, ordered);
+                LSElements.push_back(list);
 
             }
             continue;
@@ -60,6 +69,22 @@ string StringSetter::parse(string mdStr)
 
         bool inP;
 
+        //Checking for unordered list
+        if(c == '*'){
+            int secondBraceIndex = findEndTag(lineInput, '*', i + 2);
+
+
+
+            if(secondBraceIndex == string::npos){
+                inList = true;
+                ordered = false;
+                listElements.push_back(lineInput.substr(i));
+                continue;
+            }
+        }
+        
+
+        //Checking for header
         if(c == '#')
         {
             int headerNum = 0;
@@ -127,5 +152,10 @@ int StringSetter::findEndTag(string line, char tag, int startTag)
     string lineI = line.substr(startTag);
                 
     //offsets for original line
+
+    if(lineI.find(tag) == string::npos)
+    {
+        return string::npos;
+    }
     return (lineI.find(tag) + startTag);
 }

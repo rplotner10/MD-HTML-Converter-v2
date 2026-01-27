@@ -21,6 +21,15 @@ string LineSetter::compileLine()
         outputHelper += text.substr(lastChildEndPos);
         
         return (startTag + outputHelper + endTag);
+    }else if(hC && iL)
+    {
+        outputHelper.append(startTag + "/n");
+        for(const LineSetter& child: children)
+        {
+            outputHelper.append((child.startTag + child.text + child.endTag + "/n"));
+        }
+        outputHelper.append(endTag);
+
     }else
     {
         return (startTag + text + endTag);
@@ -31,6 +40,7 @@ void LineSetter::bold(int start, int end, string line)
 {
     iP = false;
     hC = false;
+    iL = false;
 
     //pos include tags
     startPos = start - 2;
@@ -45,6 +55,7 @@ void LineSetter::italics(int start, int end, string line)
 {
     iP = false;
     hC = false;
+    iL = false;
 
     //pos include tags
     startPos = start - 1;
@@ -59,6 +70,7 @@ void LineSetter::monospace(int start, int end, string line)
 {
     iP = false;
     hC = false;
+    iL = false;
 
     //pos include tags
     startPos = start - 1;
@@ -139,4 +151,35 @@ void LineSetter::header(int headers, string lineInput)
     endTag = "</h" + headerNumInString + ">";
 
     text = textWNoPound;
+}
+
+void LineSetter::list(vector <string> listStrings, bool ordered)
+{
+    iL = true;
+
+    if(ordered)
+    {
+        startTag = "<ol>";
+        endTag = "</ol>";
+        
+    }else
+    {
+        startTag = "<ul>";
+        endTag = "</ul>";
+    }
+
+    for(const string& str: listStrings)
+    {
+        LineSetter listE;
+        listE.listElement(str);
+        children.push_back(listE);
+    }
+
+    text = "";
+}
+
+void LineSetter::listElement(string str){
+    text = str;
+    startTag = "<li>";
+    endTag = "</li>";
 }
