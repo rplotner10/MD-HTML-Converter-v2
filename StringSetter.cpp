@@ -34,6 +34,7 @@ string StringSetter::parse(string mdStr)
                 inParagraph = false;
 
                 LSElements.push_back(para);
+                paragraphText = "";
 
             }
             continue;
@@ -72,7 +73,13 @@ string StringSetter::parse(string mdStr)
     
 
     }
+    if(inParagraph){
+        LineSetter para;
+        para.paragraph(paragraphText);
+        inParagraph = false;
 
+        LSElements.push_back(para);
+    }
     compileLS();
 
     return outputText;
