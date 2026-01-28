@@ -24,7 +24,8 @@ string StringSetter::parse(string mdStr)
     vector <string> listElements;
 
     TextMDCheck TMDCheck;
-
+    
+    //feeds in output line by line
     while(getline(ss, lineInput))
     {
         //checks if empty line
@@ -46,7 +47,7 @@ string StringSetter::parse(string mdStr)
                 LSElements.push_back(list);
 
             }
-            continue;
+            continue; //starts new iteration of while loop
         }
 
         if(inParagraph)
@@ -65,20 +66,18 @@ string StringSetter::parse(string mdStr)
         }
         while(c == ' ');
 
-        //Check what first character is to see if in MD Block
-
         bool inP;
 
         //Checking for unordered list
         if(c == '*'){
+
             int secondBraceIndex = findEndTag(lineInput, '*', i + 2);
-
-
 
             if(secondBraceIndex == string::npos){
                 inList = true;
                 ordered = false;
                 listElements.push_back(lineInput.substr(i));
+
                 continue;
             }
         }
@@ -116,13 +115,25 @@ string StringSetter::parse(string mdStr)
     
 
     }
+
     if(inParagraph){
         LineSetter para;
         para.paragraph(paragraphText);
         inParagraph = false;
 
         LSElements.push_back(para);
+    }else if(inList){
+
+        LineSetter list;
+        list.list(listElements, ordered);
+        inList = false;
+        
+        LSElements.push_back(list);
+
+        cout << endl;
+
     }
+    
     compileLS();
     return outputText;
 }

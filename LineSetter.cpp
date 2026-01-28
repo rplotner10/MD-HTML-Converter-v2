@@ -24,12 +24,15 @@ string LineSetter::compileLine()
         return (startTag + outputHelper + endTag);
     }else if(hC && iL) //if in paragraph and have children
     {
-        outputHelper.append(startTag + "/n");
+
+        outputHelper.append(startTag + "\n");
         for(const LineSetter& child: children)
         {
-            outputHelper.append((child.startTag + child.text + child.endTag + "/n"));
+            outputHelper.append((child.startTag + child.text + child.endTag + "\n"));
         }
         outputHelper.append(endTag);
+
+        return outputHelper;
 
     }else
     {
@@ -156,6 +159,8 @@ void LineSetter::header(int headers, string lineInput)
 
 void LineSetter::list(vector <string> listStrings, bool ordered)
 {
+    iP = false;
+
     iL = true;
 
     if(ordered)
@@ -171,8 +176,13 @@ void LineSetter::list(vector <string> listStrings, bool ordered)
 
     for(const string& str: listStrings)
     {
+        hC = true;
         LineSetter listE;
-        listE.listElement(str);
+        //remove asterisk and space from string
+        string strEdited = str.substr(2);
+
+
+        listE.listElement(strEdited);
         children.push_back(listE);
     }
 

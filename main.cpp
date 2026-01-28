@@ -120,5 +120,7 @@ TEST_CASE("unordered list")
 {
 	string input = "  * this one\n * that one\n * the other one\n";
 	StringSetter s;
-	REQUIRE(s.parse(input) == "<p>this is a <b>bold</b> paragraph</p>\n");
+
+	string output = s.parse(input);
+	REQUIRE(output == "<ul>\n<li>this one</li>\n<li>that one</li>\n<li>the other one</li>\n</ul>\n");
 }
