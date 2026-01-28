@@ -5,6 +5,7 @@ string LineSetter::compileLine()
 {
     string outputHelper = "";
 
+    //if in paragraph and have children
     if (iP && hC)
     {
         //adds all child elements
@@ -21,7 +22,7 @@ string LineSetter::compileLine()
         outputHelper += text.substr(lastChildEndPos);
         
         return (startTag + outputHelper + endTag);
-    }else if(hC && iL)
+    }else if(hC && iL) //if in paragraph and have children
     {
         outputHelper.append(startTag + "/n");
         for(const LineSetter& child: children)
