@@ -149,3 +149,11 @@ TEST_CASE("Link Test")
     string output = link1.parse(input);
     REQUIRE(output == "<a href=\"https://www.carthage.edu/\">Carthage Website</a>\n");
 }
+
+TEST_CASE("Horizontal Test")
+{
+    string input = "---\n";
+    StringSetter link1;
+    string output = link1.parse(input);
+    REQUIRE(output == "<hr>\n");
+}

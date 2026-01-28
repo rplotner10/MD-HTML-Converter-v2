@@ -235,3 +235,10 @@ void LineSetter::links(string link, string title, int start, int end)
     endTag = "</a>";
     text = title;
 }
+
+void LineSetter::hL()
+{
+    startTag = "<hr>";
+    endTag = "";
+    text = "";
+}

@@ -24,6 +24,8 @@ class LineSetter
         void images(string link, string linkDescription, int start, int end);
         void links(string link, string title, int start, int end);
 
+        void hL();
+
         string compileLine();
 
         bool isParagraph();
