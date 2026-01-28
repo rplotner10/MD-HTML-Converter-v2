@@ -178,11 +178,21 @@ void LineSetter::list(vector <string> listStrings, bool ordered)
     {
         hC = true;
         LineSetter listE;
-        //remove asterisk and space from string
-        string strEdited = str.substr(2);
+
+        // char c = str[0];
+        // int j = 0;
+
+        // while(c != ' '){
+            
+        //     j++;
+        //     c = str[j];
+        // }
+
+        // //remove asterisk and space from string
+        // string strEdited = str.substr(j+1);
 
 
-        listE.listElement(strEdited);
+        listE.listElement(str);
         children.push_back(listE);
     }
 

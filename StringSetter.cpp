@@ -68,15 +68,37 @@ string StringSetter::parse(string mdStr)
 
         bool inP;
 
+        if((int) c >= 48 && (int) c <= 57)
+        {
+            int j = i;
+            c = lineInput[j];
+            while((int) c >= 48 && (int) c <= 57)
+            {
+                j++;
+                c = lineInput[j];
+            }
+            if(c == '.'){
+                ordered = true;
+                inList = true;
+                string lineSub = lineInput.substr(j+2);//trimmed lineInput
+                listElements.push_back(lineSub);
+
+                continue;
+            }
+        }
+
         //Checking for unordered list
         if(c == '*'){
-
+            
             int secondBraceIndex = findEndTag(lineInput, '*', i + 2);
-
+            
             if(secondBraceIndex == string::npos){
                 inList = true;
                 ordered = false;
-                listElements.push_back(lineInput.substr(i));
+
+                string lineSub = lineInput.substr(i+2);//trimmed lineInput
+
+                listElements.push_back(lineSub);
 
                 continue;
             }
