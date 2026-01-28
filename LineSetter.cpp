@@ -204,3 +204,34 @@ void LineSetter::listElement(string str){
     startTag = "<li>";
     endTag = "</li>";
 }
+void LineSetter::images(string link, string linkDescription, int start, int end)
+{    
+    iP = false;
+    hC = false;
+
+    //pos include tags
+    startPos = start;
+    endPos = end;
+
+    string linkURL = link;
+    string description = linkDescription;
+    startTag = "<img src=\"" + link + "\" alt=\"" + linkDescription;
+    endTag = "\">";
+    text = "";
+}
+
+void LineSetter::links(string link, string title, int start, int end)
+{
+    iP = false;
+    hC = false;
+
+    //pos include tags
+    startPos = start;
+    endPos = end;
+
+    string linkURL = link;
+    string subject = title;
+    startTag = "<a href=\"" + link + "\">";
+    endTag = "</a>";
+    text = title;
+}

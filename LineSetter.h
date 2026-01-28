@@ -17,8 +17,12 @@ class LineSetter
         void monospace(int start, int end, string line);
         void paragraph(string line);
         void header(int headers,string lineInput);
+
         void list(vector <string> listStrings, bool ordered);
         void listElement(string std);
+        
+        void images(string link, string linkDescription, int start, int end);
+        void links(string link, string title, int start, int end);
 
         string compileLine();
 

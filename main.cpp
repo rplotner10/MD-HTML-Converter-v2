@@ -133,3 +133,19 @@ TEST_CASE("ordered list")
 	string output = s.parse(input);
 	REQUIRE(output == "<ol>\n<li>this one</li>\n<li>that one</li>\n<li>the other one</li>\n</ol>\n");
 }
+TEST_CASE("Image Test 2")
+{
+	string input = "and a picture of me here: ![Me](https://avatars.githubusercontent.com/u/934916?v=4)";
+	StringSetter Image1;
+	string output = Image1.parse(input);
+	REQUIRE(output == "<p>and a picture of me here: <img src=\"https://avatars.githubusercontent.com/u/934916?v=4\" alt=\"Me\"></p>\n");
+}
+
+
+TEST_CASE("Link Test")
+{
+    string input = "[Carthage Website](https://www.carthage.edu/)";
+    StringSetter link1;
+    string output = link1.parse(input);
+    REQUIRE(output == "<a href=\"https://www.carthage.edu/\">Carthage Website</a>\n");
+}
