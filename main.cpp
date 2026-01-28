@@ -17,21 +17,21 @@ int main()
 	Catch :: Session().run();
 	return 0;
 }
-// TEST_CASE("File Read Test")
-// {
-// 	MDConverter T1;
-// 	string correctResult ="This is the first line\nThis is the second line\nThis is the third line\nThis is the fourth line\n";
-// 	string testCase1 = T1.returnFileText("markdown-sample.md");
-// 	REQUIRE(testCase1 == correctResult); 
-// }
-// TEST_CASE("write Out To FIle")
-// {
-// 	MDConverter T2;
-// 	string correctResult2 = "This is our first text with only one line of text\n This is the second line of text";
-// 	T2.writeOutToFile("This is our first text with only one line of text\nThis is the second line of text");
-//  	REQUIRE(true == true); 
+TEST_CASE("File Read Test")
+{
+	MDConverter T1;
+	string correctResult ="This is the first line\nThis is the second line\nThis is the third line\nThis is the fourth line\n";
+	string testCase1 = T1.returnFileText("markdown-sample.md");
+	REQUIRE(testCase1 == correctResult); 
+}
+TEST_CASE("write Out To FIle")
+{
+	MDConverter T2;
+	string correctResult2 = "This is our first text with only one line of text\n This is the second line of text";
+	T2.writeOutToFile("This is our first text with only one line of text\nThis is the second line of text");
+ 	REQUIRE(true == true); 
 
-// }
+}
 
 // TEST_CASE("HTML starting labeling")
 // {
@@ -40,79 +40,89 @@ int main()
 // 	string retVal = T1.htmlStartLabeling();
 //  	REQUIRE(retVal == correctResult1); 
 // }
-// TEST_CASE("header test 1")
-// {
-// 	string input = "###This is header one";
-	
-// 	StringSetter s;
-// 	string output1 = "<h3>This is header one</h3>\n";
-// 	string output = s.parse(input);
-// 	REQUIRE(output == "<h3>This is header one</h3>\n");
-
-// }
-// TEST_CASE("bold test 2")
-// {
-// 	string input = "**some longer text**";
-// 	StringSetter s;
-// 	REQUIRE(s.parse(input) == "<b>some longer text</b>\n");
-
-// }
-// TEST_CASE("italics test")
-// {
-// 	string input = "*some text*";
-// 	StringSetter s;
-// 	REQUIRE(s.parse(input) == "<em>some text</em>\n");
-
-// }
-// TEST_CASE("italics test 2")
-// {
-// 	string input = "*some longer text*";
-// 	StringSetter s;
-// 	REQUIRE(s.parse(input) == "<em>some longer text</em>\n");
-
-// }
-// TEST_CASE("monospace test")
-// {
-// 	string input = "`some text`";
-// 	StringSetter s;
-// 	REQUIRE(s.parse(input) == "<code>some text</code>\n");
-
-// }
-// TEST_CASE("monospace test 2")
-// {
-// 	string input = "`some longer text`";
-// 	StringSetter s;
-// 	REQUIRE(s.parse(input) == "<code>some longer text</code>\n");
-
-// }
-
-
-// TEST_CASE("basic paragraph")
-// {
-// 	string input = "this is a paragraph\n\n";
-// 	StringSetter s;
-// 	REQUIRE(s.parse(input) == "<p>this is a paragraph</p>\n");
-// }
-
-// TEST_CASE("paragraph w/ bold in it")
-// {
-// 	string input = "this is a **bold** paragraph\n\n";
-// 	StringSetter s;
-// 	REQUIRE(s.parse(input) == "<p>this is a <b>bold</b> paragraph</p>\n");
-// }
-
-// TEST_CASE("DEMO"){
-// 	string filePath = "demo-test.md";
-
-// 	MDConverter td;
-// 	td.compileDoc(filePath);
-// 	REQUIRE(true == true);
-// }
-
-TEST_CASE("Image Test")
+TEST_CASE("header test 1")
 {
-	string input = "![Mark](https://media.licdn.com/dms/image/v2/D5603AQG7BJYco6PGow/profile-displayphoto-scale_200_200/B56ZuqDnh8IsAc-/0/1768084634527?e=2147483647&v=beta&t=BveQueilMGBwqTraEt1zaVkWIHDYIn_vOoRsg5Pm_h4)";
+	string input = "###This is header one";
+	
+	StringSetter s;
+	string output1 = "<h3>This is header one</h3>\n";
+	string output = s.parse(input);
+	REQUIRE(output == "<h3>This is header one</h3>\n");
+
+}
+TEST_CASE("bold test 2")
+{
+	string input = "**some longer text**";
+	StringSetter s;
+	REQUIRE(s.parse(input) == "<b>some longer text</b>\n");
+
+}
+TEST_CASE("italics test")
+{
+	string input = "*some text*";
+	StringSetter s;
+	REQUIRE(s.parse(input) == "<em>some text</em>\n");
+
+}
+TEST_CASE("italics test 2")
+{
+	string input = "*some longer text*";
+	StringSetter s;
+	REQUIRE(s.parse(input) == "<em>some longer text</em>\n");
+
+}
+TEST_CASE("monospace test")
+{
+	string input = "`some text`";
+	StringSetter s;
+	REQUIRE(s.parse(input) == "<code>some text</code>\n");
+
+}
+TEST_CASE("monospace test 2")
+{
+	string input = "`some longer text`";
+	StringSetter s;
+	REQUIRE(s.parse(input) == "<code>some longer text</code>\n");
+
+}
+
+
+TEST_CASE("basic paragraph")
+{
+	string input = "this is a paragraph\n\n";
+	StringSetter s;
+	REQUIRE(s.parse(input) == "<p>this is a paragraph</p>\n");
+}
+
+TEST_CASE("paragraph w/ bold in it")
+{
+	string input = "this is a **bold** paragraph\n\n";
+	StringSetter s;
+	REQUIRE(s.parse(input) == "<p>this is a <b>bold</b> paragraph</p>\n");
+}
+
+TEST_CASE("DEMO"){
+	string filePath = "demo-test.md";
+
+	MDConverter td;
+	td.compileDoc(filePath);
+	REQUIRE(true == true);
+}
+
+
+TEST_CASE("Image Test 2")
+{
+	string input = "and a picture of me here: ![Me](https://avatars.githubusercontent.com/u/934916?v=4)";
 	StringSetter Image1;
 	string output = Image1.parse(input);
-	REQUIRE(output == "<img src=\"https://media.licdn.com/dms/image/v2/D5603AQG7BJYco6PGow/profile-displayphoto-scale_200_200/B56ZuqDnh8IsAc-/0/1768084634527?e=2147483647&v=beta&t=BveQueilMGBwqTraEt1zaVkWIHDYIn_vOoRsg5Pm_h4\" alt=\"Mark\">\n");
+	REQUIRE(output == "<p>and a picture of me here: <img src=\"https://avatars.githubusercontent.com/u/934916?v=4\" alt=\"Me\"></p>\n");
+}
+
+
+TEST_CASE("Link Test")
+{
+    string input = "[Carthage Website](https://www.carthage.edu/)";
+    StringSetter link1;
+    string output = link1.parse(input);
+    REQUIRE(output == "<a href=\"https://www.carthage.edu/\">Carthage Website</a>\n");
 }
