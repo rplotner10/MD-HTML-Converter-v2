@@ -12,6 +12,8 @@ using namespace std;
 class LineSetter
 {
     public:
+        LineSetter();
+
         void bold(int start, int end, string line);
         void italics(int start, int end, string line);
         void monospace(int start, int end, string line);
@@ -19,31 +21,20 @@ class LineSetter
         void header(int headers,string lineInput);
 
         void list(vector <string> listStrings, bool ordered);
-        void listElement(string std);
+        void listElement(string std); //helper method that creates children for lists
         
         void images(string link, string linkDescription, int start, int end);
         void links(string link, string title, int start, int end);
 
-        void hL();
+        void hL(); //Horizontal Line
 
         string compileLine();
 
-        bool isParagraph();
-
-        vector <LineSetter> getChildren();
-
-        int getStartPos();
-        int getEndPos();
-
-        string getText();
-
-        bool hasChildren();
+        void setAllFalse();
 
     private:
         bool iP; //isParagraph bool val
-
         bool hC; //hasChildren bool val
-
         bool iL; //isList bool val
 
         int startPos;

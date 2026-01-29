@@ -23,7 +23,7 @@ string StringSetter::parse(string mdStr)
     string paragraphText;
     vector <string> listElements;
 
-    TextMDCheck TMDCheck;
+    TextMDCheck TMDCheck; //utility class used for checkMD method
     
     //feeds in output line by line
     while(getline(ss, lineInput))
@@ -31,20 +31,25 @@ string StringSetter::parse(string mdStr)
         //checks if empty line
         if (lineInput == "")
         {
+            //if empty line we check if we are in a block to compile finishing
+            //element
             if(inParagraph)
             {
-                LineSetter para;
-                para.paragraph(paragraphText);
                 inParagraph = false;
 
+                LineSetter para;
+                para.paragraph(paragraphText);
                 LSElements.push_back(para);
                 paragraphText = "";
 
             }else if(inList){
                 inList = false;
+
                 LineSetter list;
                 list.list(listElements, ordered);
                 LSElements.push_back(list);
+
+                listElements = {};
 
             }
             continue; //starts new iteration of while loop
@@ -66,17 +71,19 @@ string StringSetter::parse(string mdStr)
         }
         while(c == ' ');
 
-        bool inP;
-
+        //if first value is a number, we are in an unordered list potentionally
+        //then we check if the next character is a dot
         if((int) c >= 48 && (int) c <= 57)
         {
             int j = i;
             c = lineInput[j];
-            while((int) c >= 48 && (int) c <= 57)
-            {
+            //finds next non number character in case of double or triple 
+            //digit numbers
+            while((int) c >= 48 && (int) c <= 57){
                 j++;
                 c = lineInput[j];
             }
+
             if(c == '.'){
                 ordered = true;
                 inList = true;
@@ -92,6 +99,8 @@ string StringSetter::parse(string mdStr)
             
             int secondBraceIndex = findEndTag(lineInput, '*', i + 2);
             
+            //this block checks if the block has another * implieing it is an italics or 
+            //bold
             if(secondBraceIndex == string::npos){
                 inList = true;
                 ordered = false;
@@ -104,7 +113,6 @@ string StringSetter::parse(string mdStr)
             }
         }
         
-
         //Checking for header
         if(c == '#')
         {
@@ -123,13 +131,17 @@ string StringSetter::parse(string mdStr)
             continue;
 
         }
-        if(c == '-' && lineInput[i+ 1] == '-' && lineInput[i + 2] == '-')
+
+        if(c == '-' && lineInput[i + 1] == '-' && lineInput[i + 2] == '-')
         {
             LineSetter hL; // Horizontal Line
             hL.hL();
             LSElements.push_back(hL);
             continue;
         }
+
+        bool inP; //bool that detects if we are in a paragraph
+
         LineSetter element = TMDCheck.checkMD(inP, i, lineInput);
 
         if(!inP)
@@ -144,6 +156,8 @@ string StringSetter::parse(string mdStr)
 
     }
 
+    //When we exit the while loop, we check if there were any elements 
+    //in progress
     if(inParagraph){
         LineSetter para;
         para.paragraph(paragraphText);
@@ -189,12 +203,11 @@ string StringSetter::htmlEndingLabeling()
 int StringSetter::findEndTag(string line, char tag, int startTag)
 {
     string lineI = line.substr(startTag);
-                
-    //offsets for original line
 
     if(lineI.find(tag) == string::npos)
     {
         return string::npos;
     }
+    
     return (lineI.find(tag) + startTag);
 }
