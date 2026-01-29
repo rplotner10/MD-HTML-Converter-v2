@@ -54,12 +54,6 @@ string StringSetter::parse(string mdStr)
             }
             continue; //starts new iteration of while loop
         }
-
-        if(inParagraph)
-        {
-            paragraphText.append(" " + lineInput);
-            continue;
-        }
         
         //find first no space char \/
         int i = -1;
@@ -85,6 +79,16 @@ string StringSetter::parse(string mdStr)
             }
 
             if(c == '.'){
+                if(inParagraph)
+                {
+                    inParagraph = false;
+
+                    LineSetter para;
+                    para.paragraph(paragraphText);
+                    LSElements.push_back(para);
+                    paragraphText = "";
+                }
+
                 ordered = true;
                 inList = true;
                 string lineSub = lineInput.substr(j+2);//trimmed lineInput
@@ -102,6 +106,16 @@ string StringSetter::parse(string mdStr)
             //this block checks if the block has another * implieing it is an italics or 
             //bold
             if(secondBraceIndex == string::npos){
+                if(inParagraph)
+                {
+                    inParagraph = false;
+
+                    LineSetter para;
+                    para.paragraph(paragraphText);
+                    LSElements.push_back(para);
+                    paragraphText = "";
+                }
+
                 inList = true;
                 ordered = false;
 
@@ -137,6 +151,12 @@ string StringSetter::parse(string mdStr)
             LineSetter hL; // Horizontal Line
             hL.hL();
             LSElements.push_back(hL);
+            continue;
+        }
+        
+        if(inParagraph)
+        {
+            paragraphText.append(" " + lineInput);
             continue;
         }
 

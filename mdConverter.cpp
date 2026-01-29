@@ -38,7 +38,7 @@ void MDConverter :: writeOutToFile(string outPutText)
 {
   ofstream fout;
   string text = outPutText;
-  fout.open("demo-test.html");
+  fout.open("output.html");
   if(fout.is_open())
   {
     fout << outPutText;

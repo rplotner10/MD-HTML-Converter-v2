@@ -10,7 +10,7 @@ The main driver function is compileDoc which takes a single string argument spec
 
 The returnFileText reads in the contents of the markdown file, which is then parsed via StringSetter.
 
-The final method of mdConverter is writeOutToFile that takes in a string and rights to a file we have labeled demo-test.html. Possibly in the future we may choose to add the ability for the user to specify the file name.
+The final method of mdConverter is writeOutToFile that takes in a string and rights to a file we have labeled output.html. Possibly in the future we may choose to add the ability for the user to specify the file name.
 
 ## StringSetter
 
@@ -29,3 +29,44 @@ There are a host of variables included as private data members of StringSetter.
  . `bool ordered;` holds if the block we are currently parsing is an ordered list
  . `string outputText;` ending text in html format
  . `vector <LineSetter> LSElements;` all elements of the current html doc
+
+ ## LineSetter
+
+ This class creates html elements that are later compiled into the StringSetter class and further the output html file.
+
+There is a constructor that possesses no arguments. This sets the iP, hC, and iL bools to false. 
+
+There are 9 html elements that are created using this class. They each have methods called to intialize the variables.
+
+1.  `void bold(int start, int end, string line);` 
+2.  `void italics(int start, int end, string line);`
+3.  `void monospace(int start, int end, string line);`
+4.  `void paragraph(string line);`
+5.  `void header(int headers,string lineInput);`
+6.  `void list(vector <string> listStrings, bool ordered);`
+7.  `void listElement(string std);` 
+8.  `void images(string link, string linkDescription, int start, int end);`
+9. `void links(string link, string title, int start, int end);`
+10. `void hL();`
+
+The start and end indexes are the start of lineInput text that pertains to the html element. For example it would start at the first * and end at the last * for italics.
+
+There are two more methods used. compileLine() creates the html tag syntax for the LineSetter element. This is then called by compileLS for each LineSetter element in the markdown doc. setAllFalse() is a helper method that is called in the constructor setting the bools to false.
+
+The private data memebrss in this class are used in compiling the html document.
+
+1. `bool iP`
+2. `bool hC`
+3. `bool iL`
+4. `int startPos`
+5. `int endPos`
+6. `string startTag`
+7. `string endTag`
+8. `string text`
+9. `vector <LineSetter> children`
+
+## TextMDCheck
+
+This class is a helper class for StringSetter. The method is called to determine if the text is bold, italics, or monospace. This is abstracted to also be called when creating a paragraph element.
+
+`LineSetter checkMD(bool &inPara, int charIndex, string line);` outputs a LineSetter element if it finds one starting on the charIndex. If it does not it outputs an empty element and sets inPara to true;
