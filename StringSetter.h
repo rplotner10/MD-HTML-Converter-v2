@@ -21,7 +21,6 @@ class StringSetter
         string parse(string mdStr);
         
         void htmlStartLabeling();
-
         string htmlEndingLabeling();
 
         int findEndTag(string line, char tag, int startTag);
@@ -30,16 +29,6 @@ class StringSetter
     private:
 
         void compileLS();
-
-        void findHtmlTag();
-
-        string startPattern;
-        string endPattern;
-        bool inMarkdown;
-        int posContentStart;
-        int posContentEnd;
-        string startTag;
-        string endtag;
 
         bool inParagraph;
         bool inList;
